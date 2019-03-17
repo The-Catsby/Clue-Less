@@ -1,0 +1,6 @@
+[submodule "clueless_frontend"]
+	path = clueless_frontend
+	url = https://github.com/The-Catsby/clueless_frontend.git
+[submodule "clueless_backend"]
+	path = clueless_backend
+	url = https://github.com/The-Catsby/clueless_backend.git
