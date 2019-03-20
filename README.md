@@ -8,24 +8,3 @@ EN.605.601 FSWE - Clue-less Team Project
 ### How to clone with submodules
     git clone --recurse-submodules https://github.com/The-Catsby/Clueless.git
 
-### Usage
-
-Install python from https://www.python.org/downloads/
-
-Install pip
-
-    > curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    
-    ...
-    
-    > python get-pip.py --user
-
-Install virtualenv & create a new virtual environment
-
-    > pip3 install virtualenv
-
-    ...
-    
-    > virtualenv MyDjangoEnv
-
-  
