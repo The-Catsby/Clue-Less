@@ -26,7 +26,7 @@ SECRET_KEY = 'cv8h5#yk7)%ehptmd^3e6or_d*h&0=!2^#8#qxf2w&1lp8pp!h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["regal-eon-235100.appspot.com"]
 
 # Application definition
 
