@@ -4,4 +4,4 @@ from django.db import models
 
 class Player(models.Model):
     name = models.CharField(max_length=32)
-    
+    date = models.DateField(auto_now=True)
