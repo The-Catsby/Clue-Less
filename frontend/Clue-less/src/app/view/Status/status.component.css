@@ -1,3 +1,17 @@
 .chatWindow {
   background-color: blue;
 }
+
+.status-window{
+  width: 100%;
+  min-height:300px;
+  max-width: 100%;
+  max-height: 50%;
+}
+.form-control{
+  display: inline;
+  width: 80%;
+}
+.btn.btn-primary{
+  float:right;
+}

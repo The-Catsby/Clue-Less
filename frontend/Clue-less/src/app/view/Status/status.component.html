@@ -1,17 +1,21 @@
 <div class="container">
   <h1>Status Window</h1>
-  <br/>
-
+  <br/> 
   <ul>
     <li *ngFor="let msg of messages">{{msg}}</li>
-  </ul>
-  <form>
+  </ul> 
     <div class="form-group">
-      <input class="form-control" type="text"/>
+      <textarea class="status-window" [(ngModel)]="message">
+        
+      </textarea>
+    </div> 
+    <h1>User input</h1>
+    <br/> 
+    <div class="form-group">
+      <input  class="form-control" type="text" [(ngModel)]="inputInstruction"   />
+      <button class="btn btn-primary" (click)="send()">Send</button> 
     </div>
-
-    <button class="btn btn-primary">Send</button>
-    <button class="btn btn-secondary">Retrieve Message</button>
-  </form>
+    
+    <!--<button class="btn btn-secondary">Retrieve Message</button>--> 
 
 </div>

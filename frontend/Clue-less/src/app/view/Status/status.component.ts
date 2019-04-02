@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ServerService} from '../../services/server.service';
+import {Component,Input} from '@angular/core';
+import {ServerService} from '../../services/server.service'; 
 
 @Component({
   selector: 'app-status',
@@ -8,9 +8,17 @@ import {ServerService} from '../../services/server.service';
 })
 export class StatusComponent {
   constructor(private serverService: ServerService){};
-
-  messages: [] = [];
-
+  public inputInstruction: string ="";
+  public message:string="";
+  public messages: [] = [];
+  
+  send(){
+    var dasdas = this.serverService.sendMessage(this.inputInstruction);
+    dasdas.subscribe(res => {
+      console.log(Object(res).username);
+      this.message = "server hosting info received";
+    });
+  }
   /* use this to retrieve messages from the server
   onRetrieve() {
     this.serverService.getMessages(this.messages)
