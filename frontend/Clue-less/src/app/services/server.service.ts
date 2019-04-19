@@ -25,4 +25,12 @@ export class ServerService {
     getAllPlayers(): Observable<any>{
         return this.http.get(this.baseurl + 'players/', {headers: this.httpHeaders});
     }
+
+    addPlayer() {
+
+    }
+
+    getNumberOfPlayers() {
+
+    }
 }

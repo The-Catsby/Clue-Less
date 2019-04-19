@@ -6,7 +6,9 @@
       Welcome to {{ title }}!
     </h1>
     <img width="300" alt="Angular Logo" src="http://mysteriouswritings.com/wp-content/uploads/2014/08/Clue.jpg">
+    <button (click)=joinGame() class="btn btn-primary" [ngStyle]="{'display': joinBtnDisplay}">Join Game</button>
   </div>
+
 
   <h4>Player List</h4>
   <ul>
@@ -14,6 +16,84 @@
         {{ player.name }}
       </li>
   </ul>
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Study</div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Hall</div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Lounge</div>
+    </div>
 
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Library</div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Billard Room</div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Dinning Room</div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Conservatory</div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Ballroom</div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-4">
+      <div class="box">Kitchen</div>
+    </div>
+  </div>
+<br/>
   <app-status></app-status>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayed}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Maximum Number Reached</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Sorry maximum number of player reached. Try again later.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideDialog()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--this is for testing the show character
+<button class="btn btn-primary" (click)="showCharacters()">Pick char</button>
+-->
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': showCharDialog}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please pick a character!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="chooseChar('pp')">Prof. Plum</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="chooseChar('p')">Mrs. Peacock</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="chooseChar('m')">Col. Mustard</button>
+        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="chooseChar('w')">Mrs. White</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="chooseChar('g')">Mr.Green</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="chooseChar('s')">Miss Scarlet</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideCharDialog()">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>

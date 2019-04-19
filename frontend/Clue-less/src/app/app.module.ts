@@ -9,10 +9,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule,MatProgressSpinnerModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    StatusComponent
+    StatusComponent,
   ],
   imports: [
     BrowserModule,
