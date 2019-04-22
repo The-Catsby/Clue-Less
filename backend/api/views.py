@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer,TestSerializer
+from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer, TestSerializer,StatusSerializer
 from api.models import Player,Item, Status
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -23,8 +23,6 @@ def TestPoint(request):
         if serializer.is_valid():
             return JsonResponse(data, status=201)
         return JsonResponse(serializer.errors, status=400)
-
-
 
 class UserViewSet(viewsets.ModelViewSet):
     """
