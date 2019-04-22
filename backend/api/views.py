@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer
-from api.models import Player, Item
+from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer, StatusSerializer
+from api.models import Player, Item, Status
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -31,3 +31,10 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+class StatusViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows items to be viewed or edited.
+    """
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from api.models import Player, Item
+from api.models import Player, Item, Status
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -22,3 +22,8 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('id', 'name')
+
+class StatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Status
+        fields = ('message')
