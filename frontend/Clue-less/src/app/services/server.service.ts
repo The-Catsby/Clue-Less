@@ -14,7 +14,7 @@ export class ServerService {
 
   sendMessage(message: any) {
     console.log("sendMessage"+message); 
-    let ob =  this.http.get("http://127.0.0.1:8000/users/2/?format=json")
+    let ob =  this.http.get("http://127.0.0.1:8000/players/5/")
     return ob; 
     //post is not support at this time
   } 
