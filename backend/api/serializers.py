@@ -37,4 +37,4 @@ class ItemSerializer(serializers.ModelSerializer):
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Status
-        fields = ('message')
+        fields = ('message', 'time', 'game')

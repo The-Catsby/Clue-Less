@@ -24,6 +24,8 @@ def TestPoint(request):
             return JsonResponse(data, status=201)
         return JsonResponse(serializer.errors, status=400)
 
+
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.

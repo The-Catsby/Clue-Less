@@ -6,45 +6,60 @@
       Welcome to {{ title }}!
     </h1>
     <img width="300" alt="Angular Logo" src="http://mysteriouswritings.com/wp-content/uploads/2014/08/Clue.jpg">
-    <button (click)=joinGame() class="btn btn-primary" [ngStyle]="{'display': joinBtnDisplay}">Join Game</button>
+    Player: <input id="playerId" [(ngModel)]="playerName" > &nbsp;&nbsp;&nbsp;&nbsp;<button (click)=joinGame() class="btn btn-primary" [ngStyle]="{'display': joinBtnDisplay}">Join Game</button>
   </div>
 
+  <div class="roomMap">
+    <h4>Rooms</h4>
+    <div>
+      <div class="room ">
+        <div class="box">Study</div>
+      </div>
+      <div class="room ">
+        <div class="box">Hall</div>
+      </div>
+      <div class="room ">
+        <div class="box">Lounge</div>
+      </div>
 
-  <h4>Player List</h4>
-  <ul>
-      <li *ngFor="let player of players">
-        {{ player.name }}
-      </li>
-  </ul>
-  <div class="row">
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Study</div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Hall</div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Lounge</div>
-    </div>
+      <div class="room ">
+        <div class="box">Library</div>
+      </div>
+      <div class="room ">
+        <div class="box">Billard Room</div>
+      </div>
+      <div class="room ">
+        <div class="box">Dinning Room</div>
+      </div>
 
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Library</div>
+      <div class="room ">
+        <div class="box">Conservatory</div>
+      </div>
+      <div class="room ">
+        <div class="box">Ballroom</div>
+      </div>
+      <div class="room ">
+        <div class="box">Kitchen</div>
+      </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Billard Room</div>
+  </div>
+  <div class="itemList">
+    <div> 
+      <h4>Weapon List</h4>
+      Candlestick, Knife, Lead Pipe, Revolver, Rope, Wrench
+    </div><br/>
+    <div>
+      <h4>Suspect List</h4>
+      Reverend Green,  Colonel Mustard,  Mrs. Peacock, Professor Plum, Miss Scarlett, Mrs. White
     </div>
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Dinning Room</div>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Conservatory</div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Ballroom</div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-4">
-      <div class="box">Kitchen</div>
+    <div>
+    <br/>
+    <h4>Player List</h4>
+      <ul>
+        <li *ngFor="let player of players">
+          {{ player.name }}
+        </li>
+      </ul>
     </div>
   </div>
 <br/>

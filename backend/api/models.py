@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Player(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True)
     date = models.DateField(auto_now=True)
     email = models.EmailField(max_length=50, null=True, unique=True)
 
@@ -16,8 +16,9 @@ class Item(models.Model):
         return self.name
         
 class Status(models.Model):
-    message = models.CharField(max_length=250)
-
+    message = models.CharField(max_length=4000)
+    time = models.CharField(max_length=50, null=True)
+    game = models.CharField(max_length=50, null=True)
     def __str__(self):
         return self.message
         

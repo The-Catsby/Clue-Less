@@ -1,6 +1,6 @@
 <div class="container">
-  <h3>Status Window</h3>
-  <br/> 
+<br/>
+  <h4>Game log</h4> 
   <ul>
     <li *ngFor="let msg of messages">{{msg}}</li>
   </ul> 
@@ -9,8 +9,8 @@
         
       </textarea>
     </div> 
-    <h1>User input</h1>
     <br/> 
+    <h4>User input</h4>
     <div class="form-group">
       <input  class="form-control" type="text" [(ngModel)]="inputInstruction"   />
       <button class="btn btn-primary" (click)="send()">Send</button> 

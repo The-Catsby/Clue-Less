@@ -8,3 +8,24 @@
   text-align: center;
   font-family: "Arial Black", sans-serif;
 }
+.roomMap{
+  width: 500px;
+  height: 320px;
+  float: left;
+}
+
+.room{
+  width: 100px;
+  float: left; 
+  margin-right: 60px;
+}
+
+.box{
+  height: 80px;
+}
+
+.itemList{
+  width: 500px;
+  margin-left: 600px;
+  height: 320px;
+}

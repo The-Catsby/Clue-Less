@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'Clue-less';
   players = [{name: 'Test'}];
   numberOfPlayer = 0;
-
+  playerName ='';
   displayed = 'none';
   showCharDialog = 'none';
 
@@ -43,6 +43,10 @@ export class AppComponent {
 
   }
 
+  joinGame(){
+    console.log(this.playerName)
+    this.api.putPlayerName(this.playerName); 
+  }
 /**
   joinGame() {
     this.api.getNumberOfPlayers().subscribe(
