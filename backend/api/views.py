@@ -1,7 +1,30 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer, StatusSerializer
-from api.models import Player, Item, Status
+from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer,TestSerializer
+from api.models import Player,Item, Status
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+
+@csrf_exempt
+def TestPoint(request):
+    if request.method == 'GET':
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True,context={'request': request})
+        return JsonResponse(serializer.data, safe=False)
+
+    #{
+	#"test":"test"
+    #}
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = TestSerializer(data=data)
+        if serializer.is_valid():
+            return JsonResponse(data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """

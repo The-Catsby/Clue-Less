@@ -14,9 +14,17 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
-
+        
 class Status(models.Model):
     message = models.CharField(max_length=250)
 
     def __str__(self):
         return self.message
+        
+class Test(models.Model):
+    test = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.test
+
+
