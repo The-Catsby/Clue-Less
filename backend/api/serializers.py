@@ -25,7 +25,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ('id', 'date', 'name', 'email')
+        fields = ('id', 'date', 'name', 'email', 'location')
 
 #################################################
 ##  Item

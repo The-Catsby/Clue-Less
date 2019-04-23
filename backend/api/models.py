@@ -7,6 +7,7 @@ class Player(models.Model):
     name = models.CharField(max_length=50, null=True)
     date = models.DateField(auto_now=True)
     email = models.EmailField(max_length=50, null=True, unique=True)
+    location = models.OneToOneField('Room', null=True, on_delete=False)
 
     def __str__(self):
         return self.name
@@ -24,7 +25,7 @@ class Item(models.Model):
 ##  Room
 #################################################
 class Room(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
@@ -33,7 +34,7 @@ class Room(models.Model):
 ##  GameState
 #################################################
 class GameState(models.Model):
-    whose_turn = models.ForeignKey(Player, null=False, on_delete=False)
+    whose_turn = models.ForeignKey('Player', null=False, on_delete=False)
 
 
 #################################################
