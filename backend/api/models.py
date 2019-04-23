@@ -35,6 +35,7 @@ class Room(models.Model):
 class GameState(models.Model):
     whose_turn = models.ForeignKey(Player, null=False, on_delete=False)
 
+
 #################################################
 ##  Status
 #################################################

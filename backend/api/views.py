@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import status, viewsets
-from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer, TestSerializer,StatusSerializer
-from api.models import Player, Item, Status
+from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer, TestSerializer,StatusSerializer, RoomSerializer
+from api.models import Player, Item, Status, Room
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
@@ -55,6 +55,16 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+#################################################
+##  Room
+#################################################
+class RoomViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Rooms to be viewed or edited.
+    """
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
 
 #################################################
 ##  Status

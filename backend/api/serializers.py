@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from api.models import Player, Item, Test, Status
+from api.models import Player, Item, Test, Status, Room
 
 
 #################################################
@@ -33,6 +33,14 @@ class PlayerSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
+        fields = ('id', 'name')
+
+#################################################
+##  Room
+#################################################
+class RoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room
         fields = ('id', 'name')
 
 #################################################
