@@ -9,6 +9,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+# Note: the rest_framework class ModelViewSet automatically
+#       provides `list`, `create`, `retrieve`,`update` and `destroy` actions.
 
 #################################################
 ##  User
