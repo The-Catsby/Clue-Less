@@ -1,5 +1,6 @@
 import {Component,Input} from '@angular/core';
 import {ServerService} from '../../services/server.service'; 
+import {message} from './../../model/message';
 
 @Component({
   selector: 'app-status',
@@ -7,17 +8,37 @@ import {ServerService} from '../../services/server.service';
   styleUrls: ['./status.component.css']
 })
 export class StatusComponent {
-  constructor(private serverService: ServerService){};
+  constructor(private serverService: ServerService){
+    this.Retrieve()
+  };
   public inputInstruction: string ="";
   public message:string="";
-  public messages: [] = [];
+  public messages: message[];
   
   send(){
-    var dasdas = this.serverService.sendMessage(this.inputInstruction);
+    let localMessage = new message();
+    localMessage.message = this.inputInstruction;
+    var dasdas = this.serverService.sendMessage(localMessage);
     dasdas.subscribe(res => {
-      console.log(Object(res).name);
-      this.message = "user: "+Object(res).name+ 'input received';
+      console.log(Object(res).name); 
     });
+  }
+
+  Retrieve(){ 
+    setInterval(() => {
+      this.serverService.getMessages().subscribe(
+        data => {
+            this.message = "";
+            this.messages = data;
+            this.messages.forEach(message => {
+              this.message = this.message + message.message +"\n";
+            });
+        },
+        error => {
+            console.log(error);
+        }
+    )
+    },333) 
   }
   /* use this to retrieve messages from the server
   onRetrieve() {

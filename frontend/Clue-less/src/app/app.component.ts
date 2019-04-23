@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ServerService} from './services/server.service';
+import {player} from './model/player';
 
 @Component({
   selector: 'app-root',
@@ -14,20 +15,24 @@ export class AppComponent {
   playerName ='';
   displayed = 'none';
   showCharDialog = 'none';
+  disablePlayer = false;
+  buttonText = "Join Game"
 
   constructor(private api: ServerService){
       this.getPlayers();
   }
 
   getPlayers = () => {
+    setInterval(() => {
       this.api.getAllPlayers().subscribe(
-          data => {
-              this.players = data;
-          },
-          error => {
-              console.log(error);
-          }
-      )
+        data => {
+            this.players = data;
+        },
+        error => {
+            console.log(error);
+        }
+    )
+    },333) 
   };
 
   showCharacters() {
@@ -45,7 +50,19 @@ export class AppComponent {
 
   joinGame(){
     console.log(this.playerName)
-    this.api.putPlayerName(this.playerName); 
+    var user = new player();
+    user.name = this.playerName
+    user.email = this.playerName+"@email.com"
+    this.api.addPlayer(user).subscribe(
+      data => {
+        this.disablePlayer = true;
+        this.buttonText = "Leave Game";
+        console.log("successed");
+      },
+      error => {
+        console.log(error);
+      }
+  ); 
   }
 /**
   joinGame() {

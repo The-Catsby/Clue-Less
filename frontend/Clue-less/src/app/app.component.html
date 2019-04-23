@@ -6,7 +6,7 @@
       Welcome to {{ title }}!
     </h1>
     <img width="300" alt="Angular Logo" src="http://mysteriouswritings.com/wp-content/uploads/2014/08/Clue.jpg">
-    Player: <input id="playerId" [(ngModel)]="playerName" > &nbsp;&nbsp;&nbsp;&nbsp;<button (click)=joinGame() class="btn btn-primary" [ngStyle]="{'display': joinBtnDisplay}">Join Game</button>
+    Player: <input id="playerId" [(ngModel)]="playerName" [disabled]='disablePlayer'> &nbsp;&nbsp;&nbsp;&nbsp;<button (click)=joinGame() class="btn btn-primary" [ngStyle]="{'display': joinBtnDisplay}">{{buttonText}}</button>
   </div>
 
   <div class="roomMap">

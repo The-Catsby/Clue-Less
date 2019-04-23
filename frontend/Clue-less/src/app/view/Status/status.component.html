@@ -1,13 +1,11 @@
 <div class="container">
 <br/>
   <h4>Game log</h4> 
-  <ul>
-    <li *ngFor="let msg of messages">{{msg}}</li>
-  </ul> 
+  <!--<ul>
+    <li *ngFor="let msg of messages">{{msg.message}}</li>
+  </ul> -->
     <div class="form-group">
-      <textarea class="status-window" [(ngModel)]="message">
-        
-      </textarea>
+      <textarea class="status-window" [(ngModel)]="message"></textarea>
     </div> 
     <br/> 
     <h4>User input</h4>
