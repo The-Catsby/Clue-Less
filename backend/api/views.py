@@ -1,11 +1,13 @@
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
+from rest_framework import status, viewsets
 from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer, TestSerializer,StatusSerializer
-from api.models import Player,Item, Status
+from api.models import Player, Item, Status
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 @csrf_exempt
 def TestPoint(request):
@@ -33,7 +35,6 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
-
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -48,6 +49,14 @@ class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
+    @action(detail=False, methods=['delete'])
+    def mass_player_destroy(self, request):
+        """Delete the user's password."""
+        players = Player.objects.all()
+        players.delete()
+
+
+
 class ItemViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows items to be viewed or edited.
@@ -61,3 +70,9 @@ class StatusViewSet(viewsets.ModelViewSet):
     """
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
+
+    @action(detail=False, methods=['delete'])
+    def mass_status_destroy(self, request):
+        """Delete the user's password."""
+        status = Status.objects.all()
+        status.delete()

@@ -9,22 +9,22 @@ import {message} from './../../model/message';
 })
 export class StatusComponent {
   constructor(private serverService: ServerService){
-    this.Retrieve()
+    this.getCmdList()
   };
-  public inputInstruction: string ="";
-  public message:string="";
+  public userCmd: string ="";
+  public message: string="";
   public messages: message[];
   
-  send(){
+  sendCmd(){
     let localMessage = new message();
-    localMessage.message = this.inputInstruction;
-    var dasdas = this.serverService.sendMessage(localMessage);
-    dasdas.subscribe(res => {
+    localMessage.message = "player:" +this.serverService.localUser.name +" -> "+ this.userCmd;
+    this.serverService.sendMessage(localMessage).subscribe(res => {
+      this.userCmd = "";
       console.log(Object(res).name); 
     });
   }
 
-  Retrieve(){ 
+  getCmdList(){ 
     setInterval(() => {
       this.serverService.getMessages().subscribe(
         data => {
@@ -38,7 +38,7 @@ export class StatusComponent {
             console.log(error);
         }
     )
-    },333) 
+    },500) 
   }
   /* use this to retrieve messages from the server
   onRetrieve() {

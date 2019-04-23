@@ -15,6 +15,7 @@ const httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
 @Injectable()
 export class ServerService {
+  public localUser:player;
 
   constructor(private http: HttpClient) {}
 
@@ -33,8 +34,13 @@ export class ServerService {
       return this.http.get(baseurl + 'players/', {headers: httpHeaders});//httpOptions
   }
 
-  addPlayer(user:player){ 
-    let postReturn = this.http.post(baseurl+"players/", user, httpOptions); 
+  addPlayer(user:player): Observable<player>{ 
+    let postReturn = this.http.post<player>(baseurl+"players/", user, httpOptions); 
+    return postReturn;
+  }
+
+  removePlayer(user:player){ 
+    let postReturn = this.http.delete(baseurl+"players/"+user.id+"/", httpOptions); 
     return postReturn;
   }
 
