@@ -1,7 +1,7 @@
 from django.db import models
 
 #################################################
-## Name: Player
+##  Player
 #################################################
 class Player(models.Model):
     name = models.CharField(max_length=50, null=True)
@@ -12,7 +12,7 @@ class Player(models.Model):
         return self.name
 
 #################################################
-## Name: Item
+##  Item
 #################################################
 class Item(models.Model):
     name = models.CharField(max_length=32)
@@ -21,7 +21,7 @@ class Item(models.Model):
         return self.name
 
 #################################################
-## Name: Room
+##  Room
 #################################################
 class Room(models.Model):
     name = models.CharField(max_length=50)
@@ -30,7 +30,13 @@ class Room(models.Model):
         return self.name
 
 #################################################
-## Name: Status
+##  GameState
+#################################################
+class GameState(models.Model):
+    whose_turn = models.ForeignKey(Player, null=False, on_delete=False)
+
+#################################################
+##  Status
 #################################################
 class Status(models.Model):
     message = models.CharField(max_length=4000)
@@ -40,7 +46,7 @@ class Status(models.Model):
         return self.message
 
 #################################################
-## Name: Test
+##  Test
 #################################################
 class Test(models.Model):
     test = models.CharField(max_length=32)
