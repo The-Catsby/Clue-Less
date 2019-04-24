@@ -36,3 +36,8 @@ Install pip
 > python manage.py runserver
 ```
 - IP Address set to http://127.0.0.1:8000/
+
+If database has no entries run:
+```
+> python manage.py loaddata initial_data
+```
