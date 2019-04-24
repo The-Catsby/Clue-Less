@@ -1,0 +1,109 @@
+[{
+    "model": "api.player",
+    "pk": 1,
+    "fields": {
+        "name": "Player 1",
+        "date": "2019-04-23",
+        "email": "player1@game.com",
+        "location": 1
+    }
+}, {
+    "model": "api.player",
+    "pk": 2,
+    "fields": {
+        "name": "Player 2",
+        "date": "2019-04-23",
+        "email": "player2@game.com",
+        "location": 2
+    }
+}, {
+    "model": "api.item",
+    "pk": 1,
+    "fields": {
+        "name": "Rope"
+    }
+}, {
+    "model": "api.item",
+    "pk": 2,
+    "fields": {
+        "name": "Lead Pipe"
+    }
+}, {
+    "model": "api.item",
+    "pk": 3,
+    "fields": {
+        "name": "Knife"
+    }
+}, {
+    "model": "api.item",
+    "pk": 4,
+    "fields": {
+        "name": "Wrench"
+    }
+}, {
+    "model": "api.item",
+    "pk": 5,
+    "fields": {
+        "name": "Candlestick"
+    }
+}, {
+    "model": "api.item",
+    "pk": 6,
+    "fields": {
+        "name": "Revolver"
+    }
+}, {
+    "model": "api.room",
+    "pk": 1,
+    "fields": {
+        "name": "Study"
+    }
+}, {
+    "model": "api.room",
+    "pk": 2,
+    "fields": {
+        "name": "Hall"
+    }
+}, {
+    "model": "api.room",
+    "pk": 3,
+    "fields": {
+        "name": "Lounge"
+    }
+}, {
+    "model": "api.room",
+    "pk": 4,
+    "fields": {
+        "name": "Dining Room"
+    }
+}, {
+    "model": "api.room",
+    "pk": 5,
+    "fields": {
+        "name": "Kitchen"
+    }
+}, {
+    "model": "api.room",
+    "pk": 6,
+    "fields": {
+        "name": "Ballroom"
+    }
+}, {
+    "model": "api.room",
+    "pk": 7,
+    "fields": {
+        "name": "Conservatory"
+    }
+}, {
+    "model": "api.room",
+    "pk": 8,
+    "fields": {
+        "name": "Library"
+    }
+}, {
+    "model": "api.room",
+    "pk": 9,
+    "fields": {
+        "name": "Billiard Room"
+    }
+}]

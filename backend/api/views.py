@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import status, viewsets
-from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer, TestSerializer,StatusSerializer, RoomSerializer
+from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer,StatusSerializer, RoomSerializer, TestSerializer
 from api.models import Player, Item, Status, Room
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
