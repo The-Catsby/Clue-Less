@@ -15,9 +15,15 @@ export class AppComponent {
   playerName ='';
   displayed = 'none';
   showCharDialog = 'none';
+  showRoomErrMsg = 'none';
+  showAccusationMsg = 'none';
   disablePlayer = false;
-  buttonText = "Join Game"
+  buttonText = "Join Game";
   localUser:player;
+
+  weaponSelected = '';
+  suspectSelected = '';
+  roomSelected = '';
 
   constructor(private serverService: ServerService){
       this.getPlayers();
@@ -39,8 +45,8 @@ export class AppComponent {
   joinGame(){
     if(this.buttonText=="Join Game"){
       this.localUser = new player();
-      this.localUser.name = this.playerName
-      this.localUser.email = this.playerName+"@email.com"
+      this.localUser.name = this.playerName;
+      this.localUser.email = this.playerName+"@email.com";
       this.serverService.addPlayer(this.localUser).subscribe(
         data => {
           this.localUser.id = data.id;
@@ -67,15 +73,69 @@ export class AppComponent {
       );
     }
   }
-  
+
+  enterRoom(roomName){
+    console.log("entered room clicked");
+    this.serverService.enterRoom(this.localUser, roomName).subscribe(
+      data => {
+        console.log("successfully entered a room")
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+
+  makeAccusation() {
+    this.showAccusationMsg = 'block';
+  }
+
+  submitAccusation(){
+    this.showAccusationMsg = 'none';
+    this.serverService.checkAccusation(this.suspectSelected, this.weaponSelected, this.roomSelected).subscribe(
+      data => {
+        //check if data = "right' or true
+        //alert("YOU ARE THE WINNER");
+        //check if data = 'wrong' or false
+        //alert("Sorry, accusation is not correct");
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  onRoomSelectedChange($event) {
+    this.roomSelected = $event.target.value;
+  }
+
+  onSuspectSelectedChange($event) {
+    this.suspectSelected = $event.target.value;
+  }
+
+  onWeaponSelectedChange($event) {
+    this.weaponSelected = $event.target.value;
+  }
+
+
+  hideAccusationDialog() {
+    this.showAccusationMsg = 'none';
+  }
+
   showCharacters() {
     console.log("show char clicked");
     this.showCharDialog = 'block';
   }
-  
+
+
+
+
   chooseChar(any) {
 
   }
+
+
 
   hideDialog() {
     this.displayed = 'none';

@@ -13,33 +13,33 @@
     <h4>Rooms</h4>
     <div>
       <div class="room ">
-        <div class="box">Study</div>
+        <div class="box" (click)="enterRoom('Study')">Study</div>
       </div>
       <div class="room ">
-        <div class="box">Hall</div>
+        <div class="box" (click)="enterRoom('Hall')">Hall</div>
       </div>
       <div class="room ">
-        <div class="box">Lounge</div>
-      </div>
-
-      <div class="room ">
-        <div class="box">Library</div>
-      </div>
-      <div class="room ">
-        <div class="box">Billard Room</div>
-      </div>
-      <div class="room ">
-        <div class="box">Dinning Room</div>
+        <div class="box" (click)="enterRoom('Lounge')">Lounge</div>
       </div>
 
       <div class="room ">
-        <div class="box">Conservatory</div>
+        <div class="box" (click)="enterRoom('Library')">Library</div>
       </div>
       <div class="room ">
-        <div class="box">Ballroom</div>
+        <div class="box" (click)="enterRoom('Billard Room')">Billard Room</div>
       </div>
       <div class="room ">
-        <div class="box">Kitchen</div>
+        <div class="box" (click)="enterRoom('Dinning Room')">Dinning Room</div>
+      </div>
+
+      <div class="room ">
+        <div class="box" (click)="enterRoom('Conservatory')">Conservatory</div>
+      </div>
+      <div class="room ">
+        <div class="box" (click)="enterRoom('Ballroom')">Ballroom</div>
+      </div>
+      <div class="room ">
+        <div class="box" (click)="enterRoom('Kitchen')">Kitchen</div>
       </div>
     </div>
   </div>
@@ -60,6 +60,13 @@
           {{ player.name }}
         </li>
       </ul>
+    </div>
+
+    <br/>
+    <hr/>
+
+    <div>
+      <button class="btn btn-primary" (click)="makeAccusation()">Make Accusation</button>
     </div>
   </div>
 <br/>
@@ -108,6 +115,83 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideCharDialog()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': showRoomErrMsg}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Room is taken</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Sorry room is taken, please choose a different room</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideCharDialog()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': showAccusationMsg}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please pick a suspect, a weapon, and a room!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            Suspect:
+            <br/>
+            <input type="radio" name="suspect" value="prof plum" (change)="onSuspectSelectedChange($event)">Prof Plum<br>
+            <input type="radio" name="suspect" value="mrs.peacock" (change)="onSuspectSelectedChange($event)"> Mrs. Peacock<br>
+            <input type="radio" name="suspect" value="col. mustard" (change)="onSuspectSelectedChange($event)"> Col. Mustard<br>
+            <input type="radio" name="suspect" value="mrs.white" (change)="onSuspectSelectedChange($event)"> Mrs. White<br>
+            <input type="radio" name="suspect" value="mr.green" (change)="onSuspectSelectedChange($event)"> Mr. Green<br>
+            <input type="radio" name="suspect" value="miss scarlet" (change)="onSuspectSelectedChange($event)"> Miss Scarlet
+          </div>
+          <div class="col-md-4">
+            Weapon:
+            <br/>
+            <input type="radio" name="weapon" value="candlestick" (change)="onWeaponSelectedChange($event)"> Candlestick<br>
+            <input type="radio" name="weapon" value="knife" (change)="onWeaponSelectedChange($event)"> Knife<br>
+            <input type="radio" name="weapon" value="lead pipe" (change)="onWeaponSelectedChange($event)"> Lead Pipe<br>
+            <input type="radio" name="weapon" value="revolver" (change)="onWeaponSelectedChange($event)"> Revolver<br>
+            <input type="radio" name="weapon" value="rope" (change)="onWeaponSelectedChange($event)"> Rope<br>
+            <input type="radio" name="weapon" value="wrench" (change)="onWeaponSelectedChange($event)"> Wrench
+          </div>
+          <div class="col-md-4">
+            Room:
+            <br/>
+            <input type="radio" name="room" value="study" (change)="onRoomSelectedChange($event)"> Study<br>
+            <input type="radio" name="room" value="hall" (change)="onRoomSelectedChange($event)"> Hall<br>
+            <input type="radio" name="room" value="lounge" (change)="onRoomSelectedChange($event)"> Lounge<br>
+            <input type="radio" name="room" value="library" (change)="onRoomSelectedChange($event)"> Library<br>
+            <input type="radio" name="room" value="billard room" (change)="onRoomSelectedChange($event)"> Billard Room<br>
+            <input type="radio" name="room" value="dinning" (change)="onRoomSelectedChange($event)"> Dinning Room<br>
+            <input type="radio" name="room" value="conservatory" (change)="onRoomSelectedChange($event)"> Conservatory<br>
+            <input type="radio" name="room" value="ballroom" (change)="onRoomSelectedChange($event)"> Ballroom<br>
+            <input type="radio" name="room" value="kitchen" (change)="onRoomSelectedChange($event)"> Kitchen
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="submitAccusation()">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideAccusationDialog()">Cancel</button>
       </div>
     </div>
   </div>
