@@ -32,3 +32,13 @@ lib/
 /service-account.json
 /config.py
 /backend/cluelessEnv/
+/backend/.idea/backend.iml
+/backend/.idea/dataSources.local.xml
+/backend/.idea/dataSources.xml
+/backend/.idea/dataSources/caaffdc7-4523-4de8-975e-0c926da29b2f.xml
+/backend/.idea/libraries/Google_App_Engine_SDK.xml
+/backend/.idea/misc.xml
+/backend/.idea/modules.xml
+/backend/.idea/vcs.xml
+/backend/.idea/workspace.xml
+/.gitignore
