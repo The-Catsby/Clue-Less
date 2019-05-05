@@ -20,6 +20,10 @@
   margin-right: 60px;
 }
 
+.box:hover {
+  background-color: yellow;
+}
+
 .box{
   height: 80px;
 }

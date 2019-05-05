@@ -44,6 +44,16 @@ export class ServerService {
     return postReturn;
   }
 
+  enterRoom(user:player, room:string) {
+    let postReturn = this.http.post<player>(baseurl+"players/", user, httpOptions); //update this to the right URL
+    return postReturn;
+  }
+
+  checkAccusation(suspect:string, weapon:string, room:string) {
+    let postReturn = this.http.post<player>(baseurl+"players/", suspect, httpOptions); //update this to the right URL
+    return postReturn;
+  }
+
   getNumberOfPlayers() {
 
   }
