@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import status, viewsets
-from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer,StatusSerializer, RoomSerializer, TestSerializer
+from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer,StatusSerializer, RoomSerializer, TestSerializer, AccuseSerializer
 from api.models import Player, Item, Status, Room
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -87,7 +87,6 @@ class StatusViewSet(viewsets.ModelViewSet):
 #################################################
 ##  For Testing Purposes
 #################################################
-
 @csrf_exempt
 def TestPoint(request):
     if request.method == 'GET':
@@ -104,3 +103,23 @@ def TestPoint(request):
         if serializer.is_valid():
             return JsonResponse(data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+
+@csrf_exempt
+def Accuse(request):
+    if request.method == 'POST':
+        player_queryset = Player.objects.all()
+        playerSerializer = PlayerSerializer(player_queryset, many=True)
+        player_data = playerSerializer.data
+        data = JSONParser().parse(request)
+        accuse_serializer = AccuseSerializer(data=data)
+        if accuse_serializer.is_valid():
+            hasWeapon = any(accuse_serializer.data['weapon'] in player["weapon_card"] for player in player_data)
+            hasCharacter = any(accuse_serializer.data['character'] in player["character_card"] for player in player_data)
+            hasRoom = any(accuse_serializer.data['room'] in player["room_card"] for player in player_data)
+
+            if hasCharacter or hasWeapon or hasRoom:
+                return JsonResponse({'result': 'False'}, status=201)
+            else:
+                return JsonResponse({'result': 'True'}, status=201)
+        return JsonResponse(accuse_serializer.errors, status=400)
