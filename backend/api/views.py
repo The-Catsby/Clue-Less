@@ -151,18 +151,26 @@ def TestPoint(request):
 @csrf_exempt
 def Accuse(request):
     if request.method == 'POST':
-        player_queryset = Player.objects.all()
-        playerSerializer = PlayerSerializer(player_queryset, many=True)
+        players_set = Player.objects.all()
+        playerSerializer = PlayerSerializer(players_set, many=True)
         player_data = playerSerializer.data
         data = JSONParser().parse(request)
         accuse_serializer = AccuseSerializer(data=data)
         if accuse_serializer.is_valid():
-            hasWeapon = any(accuse_serializer.data['weapon'] in player["weapon_card"] for player in player_data)
-            hasCharacter = any(accuse_serializer.data['character'] in player["character_card"] for player in player_data)
-            hasRoom = any(accuse_serializer.data['room'] in player["room_card"] for player in player_data)
+            pitem = set()
+            proom = set()
+            pChar = set()
+            item_card = accuse_serializer.data['weapon'].lower()
+            room_card = accuse_serializer.data['room'].lower()
+            character_card = accuse_serializer.data['character'].lower()
 
-            if hasCharacter or hasWeapon or hasRoom:
-                return JsonResponse({'result': 'False'}, status=201)
-            else:
+            for p in players_set:
+                pitem.add(p.weapon_card)
+                proom.add(p.room_card)
+                pChar.add(p.character_card)
+
+            if item_card not in pitem and room_card not in proom and character_card not in pChar:
                 return JsonResponse({'result': 'True'}, status=201)
+            else:
+                return JsonResponse({'result': 'False'}, status=201)
         return JsonResponse(accuse_serializer.errors, status=400)

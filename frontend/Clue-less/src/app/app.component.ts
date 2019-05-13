@@ -55,6 +55,11 @@ export class AppComponent {
           this.buttonText = "Leave Game";
           this.serverService.localUser = this.localUser;
           console.log("successed");
+          this.serverService.UpdateCards().subscribe(
+            data => {
+              console.log("cards updated");
+            }
+          );
         },
         error => {
           console.log(error);
@@ -94,7 +99,7 @@ export class AppComponent {
 
   submitAccusation(){
     this.showAccusationMsg = 'none';
-    this.serverService.checkAccusation(this.suspectSelected, this.weaponSelected, this.roomSelected).subscribe(
+    this.serverService.checkAccusation(this.localUser.id, this.playerName, this.suspectSelected, this.weaponSelected, this.roomSelected).subscribe(
       data => {
         //check if data = "right' or true
         //alert("YOU ARE THE WINNER");

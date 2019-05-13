@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {player} from '../model/player';
+import {accuse} from '../model/accuse';
 import {message} from '../model/message';
 
 const httpOptions = {
@@ -49,13 +50,25 @@ export class ServerService {
     return postReturn;
   }
 
-  checkAccusation(suspect:string, weapon:string, room:string) {
-    let postReturn = this.http.post<player>(baseurl+"players/", suspect, httpOptions); //update this to the right URL
+  checkAccusation(id:number, name:string, suspect:string, weapon:string, room:string) {
+    let accustItem = new accuse();
+    accustItem.player_id = id;
+    accustItem.player_name = name;
+    accustItem.character = suspect;
+    accustItem.room = room;
+    accustItem.weapon = weapon;
+    
+    let postReturn = this.http.post<accuse>(baseurl+"accuse/", accustItem, httpOptions); //update this to the right URL
     return postReturn;
   }
 
   getNumberOfPlayers() {
 
+  }
+
+  UpdateCards(){
+    let postReturn = this.http.post(baseurl+"players/UpdateCards/", httpOptions); //update my cards
+    return postReturn;
   }
 
 }

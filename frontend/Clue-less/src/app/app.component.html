@@ -58,19 +58,18 @@
     </div>
     <div>
         <div class="playerlistClass">
-        <br/>
-        <h4>Player List</h4>
-        <ul>
-          <li *ngFor="let player of players">
-            {{ player.name }}
-          </li>
-        </ul>
-        </div>
+          <br/>
+          <h4>Player List</h4>
+          <ul><li *ngFor="let player of players">{{ player.name }}</li></ul>
+          <div class="myCards">
+            <h4>My cards</h4>
+            <ul><li *ngFor="let card of myCards">{{ card.name }}</li></ul>
+          </div>
+         </div> 
         <div class="displayImage"  >
           <img [hidden]="hideImage" class="itemImage" src="assets\{{itemImageUrl}}" >     
         </div>
     </div>
-
     <br/>
     <hr/>
 
@@ -115,12 +114,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="chooseChar('pp')">Prof. Plum</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="chooseChar('pp')">Professor Plum</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="chooseChar('p')">Mrs. Peacock</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="chooseChar('m')">Col. Mustard</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="chooseChar('m')">Colonel Mustar</button>
         <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="chooseChar('w')">Mrs. White</button>
-        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="chooseChar('g')">Mr.Green</button>
-        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="chooseChar('s')">Miss Scarlet</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="chooseChar('g')">Reverend Green</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="chooseChar('s')">Miss Scarlett</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideCharDialog()">Cancel</button>
@@ -165,12 +164,12 @@
           <div class="col-md-4">
             Suspect:
             <br/>
-            <input type="radio" name="suspect" value="prof plum" (change)="onSuspectSelectedChange($event)">Prof Plum<br>
-            <input type="radio" name="suspect" value="mrs.peacock" (change)="onSuspectSelectedChange($event)"> Mrs. Peacock<br>
-            <input type="radio" name="suspect" value="col. mustard" (change)="onSuspectSelectedChange($event)"> Col. Mustard<br>
-            <input type="radio" name="suspect" value="mrs.white" (change)="onSuspectSelectedChange($event)"> Mrs. White<br>
-            <input type="radio" name="suspect" value="mr.green" (change)="onSuspectSelectedChange($event)"> Mr. Green<br>
-            <input type="radio" name="suspect" value="miss scarlet" (change)="onSuspectSelectedChange($event)"> Miss Scarlet
+            <input type="radio" name="suspect" value="Professor Plum" (change)="onSuspectSelectedChange($event)">Professor Plum<br>
+            <input type="radio" name="suspect" value="Mrs. Peacock" (change)="onSuspectSelectedChange($event)">Mrs. Peacock<br>
+            <input type="radio" name="suspect" value="Colonel Mustar" (change)="onSuspectSelectedChange($event)">Colonel Mustar<br>
+            <input type="radio" name="suspect" value="Mrs. White" (change)="onSuspectSelectedChange($event)">Mrs. White<br>
+            <input type="radio" name="suspect" value="Reverend Green" (change)="onSuspectSelectedChange($event)">Reverend Green<br>
+            <input type="radio" name="suspect" value="Miss Scarlett" (change)="onSuspectSelectedChange($event)">Miss Scarlett
           </div>
           <div class="col-md-4">
             Weapon:
