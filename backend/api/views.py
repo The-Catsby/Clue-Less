@@ -1,7 +1,8 @@
+
 from django.contrib.auth.models import User, Group
 from rest_framework import status, viewsets
 from api.serializers import UserSerializer, GroupSerializer, PlayerSerializer, ItemSerializer,StatusSerializer, RoomSerializer, TestSerializer, AccuseSerializer
-from api.models import Player, Item, Status, Room
+from api.models import Player, Item, Status, Room, Character
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
@@ -41,6 +42,48 @@ class PlayerViewSet(viewsets.ModelViewSet):
     """
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
+
+
+    '''http://127.0.0.1:8000/players/UpdateCards/'''
+    @action(detail=False, methods=['POST'])
+    def UpdateCards(self, request):
+
+        players_set = Player.objects.all()
+        pitem = set()
+        proom = set()
+        pChar = set()
+        item_card = ''
+        room_card = ''
+        character_card  = ''
+
+        for p in players_set:
+            pitem.add(p.weapon_card)
+            proom.add(p.room_card)
+            pChar.add(p.character_card)
+
+        for player in players_set:
+            for i in Item.objects.all():
+                if (i.name not in pitem) == True:
+                    item_card = i
+
+            for i in Room.objects.all():
+                if not i.name in proom:
+                    room_card = i
+
+            for i in Character.objects.all():
+                if not i.name in pChar:
+                    character_card = i
+
+            if player.room_card is None:
+                player.room_card = room_card.name
+            if player.weapon_card is None:
+                player.weapon_card = item_card.name
+            if player.character_card is None:
+                player.character_card = character_card.name
+            player.save()
+            players_set.update()
+
+        return JsonResponse({"status":"updated"}, safe=False)
 
     @action(detail=False, methods=['delete'])
     def mass_player_destroy(self, request):

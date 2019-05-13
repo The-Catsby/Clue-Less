@@ -20,10 +20,11 @@ export class AppComponent {
   disablePlayer = false;
   buttonText = "Join Game";
   localUser:player;
-
+  itemImageUrl:string;
   weaponSelected = '';
   suspectSelected = '';
   roomSelected = '';
+  hideImage=true;
 
   constructor(private serverService: ServerService){
       this.getPlayers();
@@ -173,5 +174,50 @@ export class AppComponent {
     )
   }
 **/
-}
 
+    onMouseEnter(item:string){  
+      this.hideImage = false;
+      switch(item) { 
+        case "Green": {  
+          this.itemImageUrl="Green.JPG"; break;
+        } 
+        case "Mustard": { 
+          this.itemImageUrl="Mustard.JPG";break;
+        } 
+        case "Peacock": { 
+          this.itemImageUrl="Peacock.JPG";  break;
+        } 
+        case "Plum": { 
+          this.itemImageUrl="Plum.JPG"; break;
+        } 
+        case "Scarlett": { 
+          this.itemImageUrl="Scarlett.JPG"; break;
+        } 
+        case "White": { 
+          this.itemImageUrl="White.JPG"; break;
+        }  
+        case "Candle": {  
+          this.itemImageUrl="Candle.JPG"; break;
+        } 
+        case "Knife": { 
+          this.itemImageUrl="Knife.JPG";break;
+        } 
+        case "Pipe": { 
+          this.itemImageUrl="Pipe.JPG";  break;
+        } 
+        case "Revolver": { 
+          this.itemImageUrl="Revolver.JPG"; break;
+        } 
+        case "Rope": { 
+          this.itemImageUrl="Rope.JPG"; break;
+        } 
+        case "Wrench": { 
+          this.itemImageUrl="Wrench.JPG"; break;
+        }
+        default: { 
+          //statements; 
+          break; 
+        } 
+      } 
+    }
+}   

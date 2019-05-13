@@ -46,27 +46,36 @@
   <div class="itemList">
     <div> 
       <h4>Weapon List</h4>
-      Candlestick, Knife, Lead Pipe, Revolver, Rope, Wrench
+      <span (mouseenter)="onMouseEnter('Candle')">Candlestick</span>, <span (mouseenter)="onMouseEnter('Knife')">Knife</span>, 
+      <span (mouseenter)="onMouseEnter('Pipe')">Lead Pipe</span>, <span (mouseenter)="onMouseEnter('Revolver')">Revolver</span>, 
+      <span (mouseenter)="onMouseEnter('Rope')">Rope</span>, <span (mouseenter)="onMouseEnter('Wrench')">Wrench</span>
     </div><br/>
     <div>
       <h4>Suspect List</h4>
-      Reverend Green,  Colonel Mustard,  Mrs. Peacock, Professor Plum, Miss Scarlett, Mrs. White
+      <span (mouseenter)="onMouseEnter('Green')">Reverend Green</span>,  <span (mouseenter)="onMouseEnter('Mustard')">Colonel Mustard</span>,  
+      <span (mouseenter)="onMouseEnter('Peacock')">Mrs. Peacock</span>, <span (mouseenter)="onMouseEnter('Plum')">Professor Plum</span>, 
+      <span (mouseenter)="onMouseEnter('Scarlett')">Miss Scarlett</span>, <span (mouseenter)="onMouseEnter('White')">Mrs. White</span>
     </div>
     <div>
-    <br/>
-    <h4>Player List</h4>
-      <ul>
-        <li *ngFor="let player of players">
-          {{ player.name }}
-        </li>
-      </ul>
+        <div class="playerlistClass">
+        <br/>
+        <h4>Player List</h4>
+        <ul>
+          <li *ngFor="let player of players">
+            {{ player.name }}
+          </li>
+        </ul>
+        </div>
+        <div class="displayImage"  >
+          <img [hidden]="hideImage" class="itemImage" src="assets\{{itemImageUrl}}" >     
+        </div>
     </div>
 
     <br/>
     <hr/>
 
     <div>
-      <button class="btn btn-primary" (click)="makeAccusation()">Make Accusation</button>
+      <button class="btn btn-primary accusation" (click)="makeAccusation()">Make Accusation</button>
     </div>
   </div>
 <br/>

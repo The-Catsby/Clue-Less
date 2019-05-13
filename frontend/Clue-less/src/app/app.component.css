@@ -33,3 +33,24 @@
   margin-left: 600px;
   height: 320px;
 }
+
+.playerlistClass{
+  margin-top: 40px;
+  width:200px;
+  float: left;
+  height:260px;
+}
+
+.displayImage{
+  margin-top: 60px;
+  width: 300px;
+  float: left;
+  height:300px;
+}
+
+.accusation{
+  margin-bottom: 20px
+}
+.itemImage{
+   width:200px
+}
