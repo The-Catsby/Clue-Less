@@ -13,33 +13,33 @@
     <h4>Rooms</h4>
     <div>
       <div class="room ">
-        <div class="box" (click)="enterRoom('Study')">Study</div>
+        <div class="box" (click)="enterRoom('1')">Study</div>
       </div>
       <div class="room ">
-        <div class="box" (click)="enterRoom('Hall')">Hall</div>
+        <div class="box" (click)="enterRoom('2')">Hall</div>
       </div>
       <div class="room ">
-        <div class="box" (click)="enterRoom('Lounge')">Lounge</div>
-      </div>
-
-      <div class="room ">
-        <div class="box" (click)="enterRoom('Library')">Library</div>
-      </div>
-      <div class="room ">
-        <div class="box" (click)="enterRoom('Billard Room')">Billard Room</div>
-      </div>
-      <div class="room ">
-        <div class="box" (click)="enterRoom('Dinning Room')">Dinning Room</div>
+        <div class="box" (click)="enterRoom('3')">Lounge</div>
       </div>
 
       <div class="room ">
-        <div class="box" (click)="enterRoom('Conservatory')">Conservatory</div>
+        <div class="box" (click)="enterRoom('8')">Library</div>
       </div>
       <div class="room ">
-        <div class="box" (click)="enterRoom('Ballroom')">Ballroom</div>
+        <div class="box" (click)="enterRoom('9')">Billard Room</div>
       </div>
       <div class="room ">
-        <div class="box" (click)="enterRoom('Kitchen')">Kitchen</div>
+        <div class="box" (click)="enterRoom('4')">Dinning Room</div>
+      </div>
+
+      <div class="room ">
+        <div class="box" (click)="enterRoom('7')">Conservatory</div>
+      </div>
+      <div class="room ">
+        <div class="box" (click)="enterRoom('6')">Ballroom</div>
+      </div>
+      <div class="room ">
+        <div class="box" (click)="enterRoom('5')">Kitchen</div>
       </div>
     </div>
   </div>
@@ -63,7 +63,9 @@
           <ul><li *ngFor="let player of players">{{ player.name }}</li></ul>
           <div class="myCards">
             <h4>My cards</h4>
-            <ul><li *ngFor="let card of myCards">{{ card.name }}</li></ul>
+            <ul [hidden]="hideCards" ><li>{{weaponCard}}</li>
+                <li>{{suspectCard}}</li>
+                <li>{{roomCard}}</li></ul>
           </div>
          </div> 
         <div class="displayImage"  >

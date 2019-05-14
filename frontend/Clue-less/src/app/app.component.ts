@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ServerService } from './services/server.service';
 import { player } from './model/player';
+import { fullplayer } from './model/fullplayer';
+import { returnObj } from './model/returnObj';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,11 @@ export class AppComponent {
   weaponSelected = '';
   suspectSelected = '';
   roomSelected = '';
-  hideImage=true;
+  hideImage=true; 
+  weaponCard = '';
+  suspectCard = '';
+  roomCard = '';
+  hideCards = true;
 
   constructor(private serverService: ServerService){
       this.getPlayers();
@@ -47,7 +53,7 @@ export class AppComponent {
     if(this.buttonText=="Join Game"){
       this.localUser = new player();
       this.localUser.name = this.playerName;
-      this.localUser.email = this.playerName+"@email.com";
+      this.localUser.email = this.playerName+"@email.com"; 
       this.serverService.addPlayer(this.localUser).subscribe(
         data => {
           this.localUser.id = data.id;
@@ -58,6 +64,14 @@ export class AppComponent {
           this.serverService.UpdateCards().subscribe(
             data => {
               console.log("cards updated");
+              this.serverService.getMyCards(this.localUser.id).subscribe(
+                data => {
+                  this.weaponCard = data.weapon_card;
+                  this.suspectCard = data.character_card;
+                  this.roomCard = data.room_card;
+                  this.hideCards =  false;
+                }
+              ) 
             }
           );
         },
@@ -72,6 +86,7 @@ export class AppComponent {
           this.localUser = new player();
           this.disablePlayer = false;
           console.log("successed");
+          this.hideCards =  true;
         },
         error => {
           console.log(error);
@@ -82,7 +97,16 @@ export class AppComponent {
 
   enterRoom(roomName){
     console.log("entered room clicked");
-    this.serverService.enterRoom(this.localUser, roomName).subscribe(
+    let putPlayer = new fullplayer()
+    putPlayer.id = this.localUser.id
+    putPlayer.email = this.localUser.email
+    putPlayer.name = this.localUser.name
+    putPlayer.location = roomName
+    putPlayer.character_card = this.suspectCard
+    putPlayer.room_card = this.roomCard
+    putPlayer.weapon_card = this.weaponCard 
+
+    this.serverService.enterRoom(putPlayer, roomName).subscribe(
       data => {
         console.log("successfully entered a room")
       },
@@ -100,7 +124,12 @@ export class AppComponent {
   submitAccusation(){
     this.showAccusationMsg = 'none';
     this.serverService.checkAccusation(this.localUser.id, this.playerName, this.suspectSelected, this.weaponSelected, this.roomSelected).subscribe(
-      data => {
+      data => { 
+        let a = (data as returnObj).result;
+        if (a=="True")
+            alert("YOU ARE THE WINNER");
+        else
+            alert("Sorry, accusation is not correct");
         //check if data = "right' or true
         //alert("YOU ARE THE WINNER");
         //check if data = 'wrong' or false
@@ -134,51 +163,18 @@ export class AppComponent {
     this.showCharDialog = 'block';
   }
 
-
-
-
   chooseChar(any) {
-
+  
   }
 
-
-
+ 
   hideDialog() {
     this.displayed = 'none';
   }
 
   hideCharDialog() {
     this.showCharDialog = 'none';
-  }
-/**
-  joinGame() {
-    this.api.getNumberOfPlayers().subscribe(
-      data => {
-        this.numberOfPlayer = data;
-        if(this.numberOfPlayer >= 6) {
-          //display error message if more or equal to 6 already
-          this.displayed = 'block';
-        }else {
-          //hide the join game button
-          this.joinBtnDisplay = 'none';
-
-          //if less than 6 then add the player to the server
-          this.api.addPlayer().subscribe (
-
-            //show the characters dialog for player to pick
-            this.showCharacters();
-          )
-
-          //send message to players that a player joined
-
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-**/
+  } 
 
     onMouseEnter(item:string){  
       this.hideImage = false;

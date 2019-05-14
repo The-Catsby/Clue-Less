@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {player} from '../model/player';
 import {accuse} from '../model/accuse';
+import {fullplayer} from '../model/fullplayer'; 
 import {message} from '../model/message';
 
 const httpOptions = {
@@ -46,7 +47,7 @@ export class ServerService {
   }
 
   enterRoom(user:player, room:string) {
-    let postReturn = this.http.post<player>(baseurl+"players/", user, httpOptions); //update this to the right URL
+    let postReturn = this.http.put<player>(baseurl+"players/"+user.id+"/", user, httpOptions); //update this to the right URL
     return postReturn;
   }
 
@@ -58,7 +59,7 @@ export class ServerService {
     accustItem.room = room;
     accustItem.weapon = weapon;
     
-    let postReturn = this.http.post<accuse>(baseurl+"accuse/", accustItem, httpOptions); //update this to the right URL
+    let postReturn = this.http.post(baseurl+"accuse/", accustItem, httpOptions); //update this to the right URL
     return postReturn;
   }
 
@@ -70,5 +71,11 @@ export class ServerService {
     let postReturn = this.http.post(baseurl+"players/UpdateCards/", httpOptions); //update my cards
     return postReturn;
   }
+
+  getMyCards(id:number){
+    let postReturn = this.http.get<fullplayer>(baseurl+"players/"+id+"/", httpOptions); //update my cards
+    return postReturn; 
+  }
+
 
 }
