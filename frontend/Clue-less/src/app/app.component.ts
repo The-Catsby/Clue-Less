@@ -3,6 +3,7 @@ import { ServerService } from './services/server.service';
 import { player } from './model/player';
 import { fullplayer } from './model/fullplayer';
 import { returnObj } from './model/returnObj';
+import { message } from './model/message';
 
 @Component({
   selector: 'app-root',
@@ -95,20 +96,27 @@ export class AppComponent {
     }
   }
 
-  enterRoom(roomName){
+  enterRoom(roomid,roomName){
     console.log("entered room clicked");
     let putPlayer = new fullplayer()
     putPlayer.id = this.localUser.id
     putPlayer.email = this.localUser.email
     putPlayer.name = this.localUser.name
-    putPlayer.location = roomName
+    putPlayer.location = roomid
     putPlayer.character_card = this.suspectCard
     putPlayer.room_card = this.roomCard
     putPlayer.weapon_card = this.weaponCard 
 
-    this.serverService.enterRoom(putPlayer, roomName).subscribe(
+    this.serverService.enterRoom(putPlayer, roomid).subscribe(
       data => {
         console.log("successfully entered a room")
+
+        let localMessage = new message();
+        localMessage.message = "player:" +this.serverService.localUser.name +" -> Entered room: "+ roomName;
+        this.serverService.sendMessage(localMessage).subscribe(res => {
+        });
+
+
       },
       error => {
         console.log(error);
@@ -130,10 +138,15 @@ export class AppComponent {
             alert("YOU ARE THE WINNER");
         else
             alert("Sorry, accusation is not correct");
-        //check if data = "right' or true
-        //alert("YOU ARE THE WINNER");
-        //check if data = 'wrong' or false
-        //alert("Sorry, accusation is not correct");
+        
+
+        let localMessage = new message();
+        localMessage.message = "player:" +this.serverService.localUser.name +" -> Made accusation with "+ this.suspectSelected + " | " +this.weaponSelected + " | " + this.roomSelected + "   Result:" + (data as returnObj).result;
+        this.serverService.sendMessage(localMessage).subscribe(res => {
+        });
+
+
+
       },
       error => {
         console.log(error);

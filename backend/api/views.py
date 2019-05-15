@@ -165,11 +165,11 @@ def Accuse(request):
             character_card = accuse_serializer.data['character'].lower()
 
             for p in players_set:
-                pitem.add(p.weapon_card)
-                proom.add(p.room_card)
-                pChar.add(p.character_card)
+                pitem.add(p.weapon_card.lower())
+                proom.add(p.room_card.lower())
+                pChar.add(p.character_card.lower())
 
-            if item_card not in pitem and room_card not in proom and character_card not in pChar:
+            if item_card.lower() not in pitem and room_card.lower() not in proom and character_card.lower() not in pChar:
                 return JsonResponse({'result': 'True'}, status=201)
             else:
                 return JsonResponse({'result': 'False'}, status=201)
